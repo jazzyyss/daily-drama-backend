@@ -21,7 +21,6 @@ router.post('/', async (req, res) => {
     } else {
         blogExists[0].comments.push({ name, email, comment });
         await blogExists[0].save();
-
         res.send('existing comment saved')
     }
 

@@ -1,5 +1,5 @@
 {
-    "jwtPrivateKey": "unsecureKey",
+    "dd_privateKey": "brar",
     "db": "mongodb://localhost:27017/dailydrama",
     "port": "5000",
     "requiresAuth": true
