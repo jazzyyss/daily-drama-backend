@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-    const blog = await Blog.find().select("__id title blog");
+    const blog = await Blog.find().sort([['date', -1]]).select("__id title blog");
     res.send(blog);
 });
 router.get('/:id', async (req, res) => {

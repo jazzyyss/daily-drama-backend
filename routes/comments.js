@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
     const { blogId } = req.query;
     try {
-        const comments = await Comment.find({ blogId });
+        const comments = await Comment.find({ blogId }).sort([['date', -1]]);
         res.send(comments);
     } catch (err) {
         res.send(err.message);
