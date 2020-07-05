@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const joi = require('joi');
+const currentDate = Date().toString();
 
 const blogSchema = mongoose.Schema({
     title: {
@@ -12,7 +13,24 @@ const blogSchema = mongoose.Schema({
         type: String,
         minlength: 50,
         required: true
-    }
+    },
+    name: {
+        type: String,
+        required: true,
+        minlength: 2,
+        maxlength: 50
+    },
+    email: {
+        type: String,
+        required: true,
+        minlength: 5,
+        maxlength: 255
+    },
+    date: {
+        type: Date,
+        required: true,
+        default: Date.now
+    },
 });
 const Blog = mongoose.model('Blog', blogSchema);
 

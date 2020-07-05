@@ -1,16 +1,21 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 const { Blog, validate } = require('../models/blog');
 
 router.post('/', async (req, res) => {
-    const { title, blog } = req.body;
-    const { error } = validate(req.body);
+    const { title, blog } = req.body.blogContent;
+    const { name, email } = req.body;
+
+    const { error } = validate(req.body.blogContent);
     if (error) return res.header(400).send(error.details[0].message);
-    let blogData = Blog({
+    let blogData = new Blog({
         title,
-        blog
+        blog,
+        name,
+        email
     });
-    blogData = await blogData.save();
+    await blogData.save();
     res.header(200).send('blog saved successfully')
 });
 
@@ -20,8 +25,10 @@ router.get('/', async (req, res) => {
 });
 router.get('/:id', async (req, res) => {
     const id = req.params.id;
-    const blog = await Blog.findById(id).select("__id title blog");
-    res.send(blog);
+    const validId = mongoose.Types.ObjectId.isValid(id);
+    if (!validId) return res.send({ data: 'invalid id provided' });
+    const blog = await Blog.findById(id).select("__id title blog name email date");
+    res.send(blog)
 });
 
 module.exports = router;

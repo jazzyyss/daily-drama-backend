@@ -3,11 +3,10 @@ const router = express.Router();
 const { Comment } = require('../models/commets');
 
 router.post('/', async (req, res) => {
-    console.log(req.body);
     const { blogId, name, email, comment } = req.body;
     const blogExists = await Comment.find({ blogId: blogId });
     if (blogExists.length < 1) {
-        let commentData = Comment({
+        let commentData = new Comment({
             blogId,
             comments: {
                 name,
