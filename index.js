@@ -1,8 +1,7 @@
 //modules
 const express = require('express');
 const app = express();
-const cors = require('cors');
-const compression = require('compression');
+
 //required files
 const blogRoute = require('./routes/blog');
 const commentsRoute = require('./routes/comments');
@@ -11,10 +10,8 @@ const authRoute = require('./routes/auth');
 //startup files
 require('./startup/logging')();
 require('./startup/db')();
-//middlewares
-app.use(compression());
-app.use(cors());
-app.use(express.json());
+require('./middlewares/middlewares')(app);
+
 //using routes
 app.use('/blog', blogRoute);
 app.use('/comments', commentsRoute);
