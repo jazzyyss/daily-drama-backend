@@ -9,6 +9,6 @@ mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
 
 module.exports = () => {
-    mongoose.connect(config.get('db'))
-        .then(() => console.log(`Connected to MongoDB at ${config.get('db')}`));
+    mongoose.connect(db)
+        .then(() => console.log(`Connected to MongoDB at ${db}`));
 }

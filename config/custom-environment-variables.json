@@ -1,5 +1,5 @@
 {
     "dd_privateKey": "dd_privateKey",
     "db_password": "db_password",
-    "requiresAuth": true
+    "requiresAuth": "requiresAuth"
 }
